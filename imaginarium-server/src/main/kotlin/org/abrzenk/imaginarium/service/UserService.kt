@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service
 @Service
 class UserService(private val userRepository: UserRepository) {
 
-    fun createUser(user: User) {
-        userRepository.save(user)
+    fun createUser(login: String) {
+        userRepository.save(User(login = login))
     }
 
     fun deleteUser(user: User) {
