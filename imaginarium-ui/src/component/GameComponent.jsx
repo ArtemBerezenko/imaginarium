@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ApiService from "../service/ApiService";
 
-class RatingComponent extends Component {
+class GameComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -17,14 +17,14 @@ class RatingComponent extends Component {
     }
 
     reloadUserList() {
-        ApiService.getGameRating()
+        ApiService.game()
             .then((res) => {
                 this.setState({users: res.data})
             });
     }
 
-    startVoting() {
-        this.props.history.push('/startVoting');
+    getRating() {
+        this.props.history.push('/rating');
     }
 
     render() {
@@ -35,7 +35,7 @@ class RatingComponent extends Component {
                     <thead>
                     <tr>
                         <th>Login</th>
-                        <th>Rating</th>
+                        <th>Vote</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,14 +44,14 @@ class RatingComponent extends Component {
                             user =>
                                 <tr key={user.id}>
                                     <td>{user.login}</td>
-                                    <td>{user.rating}</td>
+                                    <td>{user.vote}</td>
                                 </tr>
                         )
                     }
                     </tbody>
                 </table>
                 <div>
-                    <button className="btn btn-danger" onClick={() => this.startVoting()}> Start Voting
+                    <button className="btn btn-danger" onClick={() => this.getRating()}> See Rating
                     </button>
                 </div>
             </div>
@@ -60,4 +60,4 @@ class RatingComponent extends Component {
 
 }
 
-export default RatingComponent;
+export default GameComponent;

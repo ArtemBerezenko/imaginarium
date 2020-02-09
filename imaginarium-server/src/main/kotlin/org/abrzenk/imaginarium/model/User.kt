@@ -7,9 +7,8 @@ data class User (
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Int = 0,
     val login: String,
-    val vote: Int = 0,
-    val rating: Int = 0
-) {
+    var vote: Int = 0,
+    var rating: Int = 0,
     @ManyToOne(fetch = FetchType.LAZY)
-    lateinit var game: Game
-}
+    val game: Game
+)

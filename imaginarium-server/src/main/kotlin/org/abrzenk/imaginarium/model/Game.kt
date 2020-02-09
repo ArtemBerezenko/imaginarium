@@ -6,10 +6,14 @@ import javax.persistence.*
 data class Game (
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Int = 0,
+    val numberOfParticipants: Int = 0
+) {
     @OneToMany(
         mappedBy = "game",
         cascade = [CascadeType.ALL],
         orphanRemoval = true
     )
-    val users: List<User>
-)
+    lateinit var users: List<User>
+    @Transient
+    lateinit var votingResult: Map<Int, Int>
+}
