@@ -9,6 +9,7 @@ data class User (
     val login: String,
     var vote: Int = 0,
     var rating: Int = 0,
+    var gameOrder: Int = 0,
     @ManyToOne(fetch = FetchType.LAZY)
     val game: Game
 )

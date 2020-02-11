@@ -10,6 +10,7 @@ class LoginComponent extends Component {
             login: '',
             rating: '',
             vote: '',
+            order: '',
             avatar: '',
             hasLoginFailed: false,
             showSuccessMessage: false
@@ -29,7 +30,7 @@ class LoginComponent extends Component {
 
     loginClicked = (e) => {
         e.preventDefault();
-        sessionStorage.setItem('user', this.state.login)
+        sessionStorage.setItem('user', this.state.login);
         let user = {
             login: this.state.login,
             rating: this.state.rating
@@ -48,7 +49,9 @@ class LoginComponent extends Component {
                 <div className="container">
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
                     {this.state.showSuccessMessage && <div>Login Sucessful</div>}
-                    Enter your login: <input type="text" name="login" value={this.state.login}
+                    Login: <input type="text" name="login" value={this.state.login}
+                                             onChange={this.handleChange}/>
+                    Order: <input type="number" name="order" value={this.state.order}
                                              onChange={this.handleChange}/>
                     {/*Avatar: <input type="password" name="password" value={this.state.avatar} onChange={this.handleChange} />*/}
                     <button className="btn-success" style={{width: '100px'}}

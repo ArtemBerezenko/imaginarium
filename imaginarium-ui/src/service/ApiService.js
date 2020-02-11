@@ -6,6 +6,10 @@ class ApiService {
         return axios.get('/rating');
     }
 
+    getAllUsers() {
+        return axios.get('/users')
+    }
+
     createGame(game) {
         return axios.post('/createGame', game);
     }

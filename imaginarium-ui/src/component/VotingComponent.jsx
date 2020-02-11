@@ -16,7 +16,6 @@ class VotingComponent extends Component {
 
     voting = (e) => {
         e.preventDefault();
-        debugger
         ApiService.startVoting(sessionStorage.getItem('user'), this.state.vote)
             .then(() => {
                 this.setState({message: 'You gave your vote successfully.'});

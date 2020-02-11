@@ -17,7 +17,7 @@ class GameComponent extends Component {
     }
 
     reloadUserList() {
-        ApiService.game()
+        ApiService.getAllUsers()
             .then((res) => {
                 this.setState({users: res.data})
             });

@@ -13,6 +13,10 @@ class UserService(private val userRepository: UserRepository) {
         userRepository.save(User(login = user.login, game = game))
     }
 
+    fun updateUser(user: User) {
+        userRepository.save(user)
+    }
+
     fun getAllUser(): List<User> = userRepository.findAll()
 
     fun getUserByLogin(login: String): User? = userRepository.findUserByLogin(login)

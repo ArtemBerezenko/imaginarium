@@ -26,8 +26,7 @@ class GameController(
     }
 
     @PostMapping("/addUserToGame")
-    fun addUser(@RequestBody user: UserDTO)
-            = ResponseEntity.ok(userService.createUser(user, game))
+    fun addUser(@RequestBody user: UserDTO) = ResponseEntity.ok(userService.createUser(user, game))
 
     @GetMapping("/rating")
     fun getRating(): ResponseEntity<List<UserDTO>> = ResponseEntity.ok(
@@ -36,11 +35,23 @@ class GameController(
             .map { user -> UserDTO(user.login, user.rating) }
             .toList())
 
+    @GetMapping("/users")
+    fun getAllUsers(): ResponseEntity<List<UserDTO>> =
+        ResponseEntity.ok(
+            userService.getAllUser()
+                .asSequence()
+                .map { user ->
+                    UserDTO(login = user.login, vote = user.vote)
+                }.toList()
+        )
+
     @PutMapping("/voting")
     fun voting(
         @RequestParam login: String,
-        @RequestParam vote: Int): ResponseEntity<User> {
+        @RequestParam vote: Int
+    ): ResponseEntity<User> {
         val user = userService.getUserByLogin(login)?.apply { this.vote = vote }
+        user?.let { userService.updateUser(it) }
         return if (user != null) ResponseEntity.ok(user) else ResponseEntity.badRequest().body(user)
     }
 
