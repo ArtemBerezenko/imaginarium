@@ -7,9 +7,17 @@ class VotingComponent extends Component {
         super(props);
 
         this.state = {
-            vote: ''
+            vote: '',
+            leader: ''
         };
     }
+
+    getLeader = () => {
+        ApiService.getLeader()
+            .then((res) => {
+                this.setState({leader: res.data});
+            });
+    };
 
     onChange = (e) =>
         this.setState({[e.target.name]: e.target.value});
@@ -24,9 +32,10 @@ class VotingComponent extends Component {
     };
 
     render() {
+        this.getLeader();
         return (
             <div>
-                <h1>So, give your vote</h1>
+                <h1>So, what you think, where {this.state.leader}'s card?</h1>
                 <div className="container">
                     Enter your vote: <input type="number" name="vote"
                                                          value={this.state.vote}

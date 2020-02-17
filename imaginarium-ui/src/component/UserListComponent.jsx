@@ -1,15 +1,13 @@
 import React, {Component} from 'react'
 import ApiService from "../service/ApiService";
-// import SpinnerComponent from "./SpinnerComponent";
 
-class GameComponent extends Component {
+class UserListComponent extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             users: [],
-            message: null,
-            loading: true
+            message: null
         };
         this.reloadUserList = this.reloadUserList.bind(this);
     }
@@ -19,19 +17,17 @@ class GameComponent extends Component {
     }
 
     reloadUserList() {
-        ApiService.collectAllVotes()
+        ApiService.getAllUsers()
             .then((res) => {
-                this.setState({users: res.data});
-                this.setState({loading: false});
+                this.setState({users: res.data})
             });
     }
 
-    getRating() {
-        this.props.history.push('/rating');
+    startVoting() {
+        this.props.history.push('/startVoting');
     }
 
     render() {
-        // if (this.state.loading) return <SpinnerComponent />;
         return (
             <div>
                 <h2 className="text-center">Table of rating:</h2>
@@ -39,7 +35,7 @@ class GameComponent extends Component {
                     <thead>
                     <tr>
                         <th>Login</th>
-                        <th>Vote</th>
+                        <th>Order</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,14 +44,14 @@ class GameComponent extends Component {
                             user =>
                                 <tr key={user.id}>
                                     <td>{user.login}</td>
-                                    <td>{user.vote}</td>
+                                    <td>{user.order}</td>
                                 </tr>
                         )
                     }
                     </tbody>
                 </table>
                 <div>
-                    <button className="btn btn-danger" onClick={() => this.getRating()}> See Rating
+                    <button className="btn btn-danger" onClick={() => this.startVoting()}> Start Voting
                     </button>
                 </div>
             </div>
@@ -64,4 +60,4 @@ class GameComponent extends Component {
 
 }
 
-export default GameComponent;
+export default UserListComponent;

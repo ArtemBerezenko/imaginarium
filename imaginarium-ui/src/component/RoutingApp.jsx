@@ -6,8 +6,9 @@ import RatingComponent from './RatingComponent';
 import CreateGameComponent from "./CreateGameComponent";
 import VotingComponent from "./VotingComponent";
 import GameComponent from "./GameComponent";
+import UserListComponent from "./UserListComponent";
 
-class InstructorApp extends Component {
+class RoutingApp extends Component {
     render() {
         return (
             <div className="container">
@@ -21,6 +22,7 @@ class InstructorApp extends Component {
                             <Route path="/rating" exact component={RatingComponent}/>
                             <Route path="/startVoting" exact component={VotingComponent}/>
                             <Route path="/game" exact component={GameComponent}/>
+                            <Route path="/allUsers" exact component={UserListComponent}/>
                         </Switch>
                     </div>
                 </Router>
@@ -34,4 +36,4 @@ const style = {
     margin: '10px'
 };
 
-export default InstructorApp
+export default RoutingApp

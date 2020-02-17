@@ -7,7 +7,11 @@ class ApiService {
     }
 
     getAllUsers() {
-        return axios.get('/users')
+        return axios.get('/allUsers')
+    }
+
+    collectAllVotes() {
+        return axios.get('/collectAllVotes')
     }
 
     createGame(game) {
@@ -18,8 +22,8 @@ class ApiService {
         return axios.put('/voting?login=' + login + '&vote=' + vote);
     }
 
-    game() {
-        return axios.get('/game')
+    getLeader() {
+        return axios.get('/getLeader')
     }
 
     addUser(user) {

@@ -33,12 +33,13 @@ class LoginComponent extends Component {
         sessionStorage.setItem('user', this.state.login);
         let user = {
             login: this.state.login,
-            rating: this.state.rating
+            rating: this.state.rating,
+            order: this.state.order
         };
         ApiService.addUser(user)
             .then(() => {
                 this.setState({message: 'User added successfully.'});
-                this.props.history.push('/rating');
+                this.props.history.push('/allUsers');
             });
     };
 
@@ -48,7 +49,7 @@ class LoginComponent extends Component {
                 <h1>Welcome to Game!</h1>
                 <div className="container">
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
-                    {this.state.showSuccessMessage && <div>Login Sucessful</div>}
+                    {this.state.showSuccessMessage && <div>Login Successfully</div>}
                     Login: <input type="text" name="login" value={this.state.login}
                                              onChange={this.handleChange}/>
                     Order: <input type="number" name="order" value={this.state.order}
